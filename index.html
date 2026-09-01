@@ -1,98 +1,470 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Comercial | Construcción Modular</title>
-    <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            color: #333; 
-            line-height: 1.6;
-        }
-        header { 
-            background-color: #2c3e50; 
-            color: white; 
-            padding: 3rem 1rem; 
-            text-align: center; 
-        }
-        header h1 { 
-            margin: 0; 
-            font-size: 2.5rem;
-        }
-        section { 
-            padding: 2rem; 
-            margin: auto; 
-            max-width: 900px; 
-        }
-        h2 { 
-            color: #2c3e50; 
-            border-bottom: 2px solid #e67e22;
-            padding-bottom: 0.5rem;
-        }
-        .service { 
-            background: #f8f9fa; 
-            padding: 1.5rem; 
-            margin-bottom: 1.5rem; 
-            border-left: 5px solid #e67e22;
-            border-radius: 4px;
-        }
-        .service h3 {
-            margin-top: 0;
-            color: #d35400;
-        }
-        footer { 
-            background: #34495e; 
-            color: white; 
-            text-align: center; 
-            padding: 1.5rem; 
-            margin-top: 2rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roble Sur | Construcción Modular en Madera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bark: #16211B;
+    --bark-2: #1E2C22;
+    --wood: #4A3222;
+    --copper: #B5651D;
+    --copper-2: #D07C33;
+    --moss: #6B7A4F;
+    --sand: #EDE6D6;
+    --sand-2: #E2D8C1;
+    --ink: #1C1712;
+    --line: rgba(237,230,214,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--sand);
+    line-height:1.65;
+  }
+  h1,h2,h3,.mark{
+    font-family:'Space Grotesk', sans-serif;
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:40;
+    background: var(--bark);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:78px;
+  }
+  .brand{display:flex; align-items:center; gap:12px; color:var(--sand);}
+  .brand span.name{font-weight:700; font-size:1.15rem; letter-spacing:0.01em;}
+  .brand span.sub{display:block; font-size:0.65rem; color:var(--sand-2); opacity:0.7; font-weight:500;}
+  .navlinks{display:flex; align-items:center; gap:36px;}
+  .navlinks a{
+    color:var(--sand-2); text-decoration:none; font-size:0.92rem; font-weight:500;
+    opacity:0.85; transition:opacity .2s;
+  }
+  .navlinks a:hover{opacity:1;}
+  .navlinks .phone{
+    color:var(--sand); border:1px solid var(--line); padding:9px 18px; border-radius:2px;
+    font-weight:600; opacity:1;
+  }
+  .navlinks .phone:hover{border-color:var(--copper-2); color:var(--copper-2);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background: var(--bark);
+    color: var(--sand);
+    position:relative;
+    overflow:hidden;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse 900px 500px at 78% 30%, rgba(181,101,29,0.16), transparent 70%);
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px;
+    align-items:center;
+    padding: 88px 0 96px;
+  }
+  .eyebrow-line{
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+    color: var(--copper-2); font-weight:600; font-size:0.85rem;
+  }
+  .eyebrow-line .dash{width:28px; height:2px; background:var(--copper-2);}
+  h1.headline{
+    font-size:3.35rem; font-weight:700; line-height:1.06; letter-spacing:-0.01em;
+    max-width:9.5ch;
+  }
+  h1.headline em{
+    font-style:normal; color:var(--copper-2);
+  }
+  .hero-copy{
+    max-width:46ch; margin-top:22px; font-size:1.08rem; color:var(--sand-2);
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:36px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--copper); color:var(--sand); padding:14px 26px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.95rem; border:1px solid var(--copper);
+    transition:background .2s, transform .15s;
+  }
+  .btn-primary:hover{background:var(--copper-2); transform:translateY(-1px);}
+  .btn-ghost{
+    padding:14px 26px; border-radius:2px; text-decoration:none; font-weight:600; font-size:0.95rem;
+    border:1px solid var(--line); color:var(--sand);
+  }
+  .btn-ghost:hover{border-color:var(--sand-2);}
+  .hero-stats{
+    display:flex; gap:34px; margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+  }
+  .hero-stats div b{display:block; font-size:1.5rem; font-family:'Space Grotesk'; color:var(--sand);}
+  .hero-stats div span{font-size:0.78rem; color:var(--sand-2); opacity:0.75;}
+
+  /* Hero SVG house illustration wrapper */
+  .hero-art{position:relative;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:56ch; margin-bottom:56px;}
+  .kicker{color:var(--moss); font-weight:600; font-size:0.85rem; margin-bottom:14px;}
+  h2.section-title{font-size:2.15rem; font-weight:700; letter-spacing:-0.01em; color:var(--ink);}
+  .section-lead{margin-top:14px; color:#5b5347; font-size:1.02rem; max-width:52ch;}
+
+  /* ---------- ABOUT / VALUE ---------- */
+  .about{background:var(--sand);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
+  .about-grid p{color:#4d4638; font-size:1.02rem; margin-bottom:16px; max-width:48ch;}
+  .about-grid p:first-child{font-size:1.2rem; color:var(--ink); font-weight:500;}
+  .capabilities{display:flex; flex-direction:column; gap:0;}
+  .cap-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:18px 0; border-bottom:1px solid rgba(28,23,18,0.12);
+  }
+  .cap-row:first-child{border-top:1px solid rgba(28,23,18,0.12);}
+  .cap-row .cap-name{font-weight:600; font-size:1rem;}
+  .cap-row .cap-detail{font-size:0.88rem; color:#7a7264; text-align:right;}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--bark-2); color:var(--sand);}
+  .services .kicker{color:var(--copper-2);}
+  .services .section-title{color:var(--sand);}
+  .services .section-lead{color:var(--sand-2);}
+  .service-row{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center;
+    padding:56px 0; border-top:1px solid var(--line);
+  }
+  .service-row:last-child{border-bottom:1px solid var(--line);}
+  .service-row.reverse{grid-template-columns:1.1fr 0.9fr;}
+  .service-row.reverse .service-copy{order:2;}
+  .service-row.reverse .service-art{order:1;}
+  .service-copy h3{font-size:1.55rem; font-weight:700; margin-bottom:14px;}
+  .service-copy p{color:var(--sand-2); font-size:0.98rem; max-width:44ch; margin-bottom:18px;}
+  .service-copy .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .service-copy .tags span{
+    font-size:0.76rem; color:var(--sand-2); border:1px solid var(--line);
+    padding:5px 12px; border-radius:2px;
+  }
+  .service-art{
+    background: var(--bark);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:28px;
+    display:flex; align-items:center; justify-content:center;
+    min-height:220px;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--sand);}
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0;}
+  .step{
+    padding:28px 24px 0 0; border-top:2px solid var(--wood); position:relative;
+  }
+  .step .num{
+    font-family:'Space Grotesk'; font-size:0.85rem; color:var(--copper); font-weight:600;
+    margin-bottom:14px; display:block;
+  }
+  .step h4{font-size:1.05rem; font-weight:700; margin-bottom:8px;}
+  .step p{font-size:0.9rem; color:#6b6355; max-width:26ch;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background: var(--wood);
+    color: var(--sand);
+    background-image: linear-gradient(135deg, var(--wood) 0%, #3a2719 100%);
+  }
+  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center;}
+  .contact h2{font-size:2.3rem; font-weight:700; letter-spacing:-0.01em; max-width:11ch;}
+  .contact p.lead{margin-top:18px; color:#E7D9C7; max-width:42ch; font-size:1.02rem;}
+  .contact-card{
+    background: rgba(237,230,214,0.06);
+    border:1px solid rgba(237,230,214,0.18);
+    border-radius:4px;
+    padding:36px;
+  }
+  .contact-card .row{padding:16px 0; border-bottom:1px solid rgba(237,230,214,0.14);}
+  .contact-card .row:last-child{border-bottom:none;}
+  .contact-card .label{font-size:0.76rem; color:#C9B79E; margin-bottom:6px;}
+  .contact-card .value{font-size:1.08rem; font-weight:600;}
+  .contact-card .btn-primary{display:block; text-align:center; margin-top:22px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bark); color:var(--sand-2); padding:40px 0;}
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    font-size:0.85rem;
+  }
+  .footer-inner .brand span.name{font-size:1rem;}
+
+  @media (max-width: 860px){
+    .hero-inner{grid-template-columns:1fr; padding:56px 0 64px;}
+    h1.headline{font-size:2.4rem; max-width:none;}
+    .hero-art{order:-1;}
+    .about-grid{grid-template-columns:1fr; gap:36px;}
+    .service-row, .service-row.reverse{grid-template-columns:1fr; gap:28px;}
+    .service-row.reverse .service-copy{order:1;}
+    .service-row.reverse .service-art{order:2;}
+    .steps{grid-template-columns:1fr 1fr; row-gap:32px;}
+    .contact-grid{grid-template-columns:1fr; gap:40px;}
+    .navlinks{gap:18px;}
+    .navlinks a:not(.phone){display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Soluciones en Construcción Modular</h1>
-        <p>Innovación, rapidez y calidad estructural en cada proyecto desde cero.</p>
-    </header>
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <path d="M17 3 L31 13 V31 H3 V13 Z" stroke="#EDE6D6" stroke-width="1.6" fill="none"/>
+        <path d="M17 3 L31 13 H3 Z" fill="#B5651D"/>
+        <rect x="10" y="18" width="6" height="6" stroke="#EDE6D6" stroke-width="1.3" fill="none"/>
+        <rect x="18" y="18" width="6" height="6" stroke="#EDE6D6" stroke-width="1.3" fill="none"/>
+      </svg>
+      <span>
+        <span class="name">Roble Sur</span>
+        <span class="sub">Construcción modular en madera</span>
+      </span>
+    </div>
+    <div class="navlinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#contacto">Contacto</a>
+      <a class="phone" href="tel:+56900000000">+56 9 XXXX XXXX</a>
+    </div>
+  </div>
+</nav>
 
-    <section id="nosotros">
-        <h2>Nuestra Propuesta de Valor</h2>
-        <p>Somos especialistas en transformar ideas en estructuras tangibles. Ofrecemos un servicio integral de construcción desde cero, enfocándonos en la eficiencia de la arquitectura modular y la belleza de los acabados en madera.</p>
-    </section>
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow-line"><span class="dash"></span>Construcción modular · Chile</div>
+      <h1 class="headline">Estructuras en madera, pensadas para durar y montadas para avanzar rápido.</h1>
+      <p class="hero-copy">Diseñamos y construimos casas modulares, revestimientos machimbrados y espacios exteriores en madera. Un proceso ordenado, de la primera medición a la última tabla.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contacto">Cotizar mi proyecto</a>
+        <a class="btn-ghost" href="#servicios">Ver especialidades</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>+120</b><span>Proyectos entregados</span></div>
+        <div><b>6–10</b><span>Semanas promedio de obra</span></div>
+        <div><b>100%</b><span>Madera de origen certificado</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 460 420" width="100%">
+        <!-- ground line -->
+        <line x1="20" y1="380" x2="440" y2="380" stroke="#3A2B20" stroke-width="1.5"/>
+        <!-- back module -->
+        <g>
+          <rect x="230" y="150" width="150" height="150" fill="#22201A" stroke="#4A3B2A" stroke-width="1.5"/>
+          <path d="M230 150 L305 105 L380 150" fill="none" stroke="#B5651D" stroke-width="3"/>
+          <rect x="260" y="220" width="34" height="60" fill="#16211B" stroke="#D07C33" stroke-width="1.5"/>
+        </g>
+        <!-- front module -->
+        <g>
+          <rect x="70" y="190" width="190" height="190" fill="#2B2419" stroke="#5C4A34" stroke-width="1.8"/>
+          <path d="M70 190 L165 130 L260 190" fill="none" stroke="#EDE6D6" stroke-width="2.5"/>
+          <!-- planks texture -->
+          <line x1="70" y1="220" x2="260" y2="220" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="70" y1="250" x2="260" y2="250" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="70" y1="280" x2="260" y2="280" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="70" y1="310" x2="260" y2="310" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="70" y1="340" x2="260" y2="340" stroke="#4A3B2A" stroke-width="1"/>
+          <!-- door -->
+          <rect x="150" y="300" width="46" height="80" fill="#16211B" stroke="#D07C33" stroke-width="2"/>
+          <!-- window -->
+          <rect x="95" y="240" width="42" height="42" fill="#B5651D" opacity="0.55" stroke="#EDE6D6" stroke-width="1.5"/>
+        </g>
+        <!-- deck -->
+        <g>
+          <rect x="20" y="378" width="310" height="10" fill="#3A2B20"/>
+          <line x1="35" y1="378" x2="35" y2="388" stroke="#16211B" stroke-width="1"/>
+          <line x1="55" y1="378" x2="55" y2="388" stroke="#16211B" stroke-width="1"/>
+          <line x1="75" y1="378" x2="75" y2="388" stroke="#16211B" stroke-width="1"/>
+          <line x1="95" y1="378" x2="95" y2="388" stroke="#16211B" stroke-width="1"/>
+          <line x1="115" y1="378" x2="115" y2="388" stroke="#16211B" stroke-width="1"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
 
-    <section id="servicios">
-        <h2>Nuestras Especialidades</h2>
-        
-        <div class="service">
-            <h3>Casas Modulares</h3>
-            <p>Construcción rápida, sostenible y altamente personalizable. Diseñamos módulos que se adaptan a tus necesidades de espacio y terreno con materiales de alta durabilidad.</p>
-        </div>
-        
-        <div class="service">
-            <h3>Machimbrado</h3>
-            <p>Instalación profesional de revestimientos machimbrados para techos y paredes, aportando un excelente aislamiento térmico y un acabado rústico o moderno según tu preferencia.</p>
-        </div>
-        
-        <div class="service">
-            <h3>Decks y Exteriores</h3>
-            <p>Diseño e instalación de decks en maderas tratadas y materiales compuestos. Creamos espacios al aire libre perfectos para terrazas, piscinas y áreas de descanso.</p>
-        </div>
-    </section>
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="kicker">Nuestra propuesta</div>
+      <p>Construimos con un método: cada proyecto empieza en el taller, no en el terreno.</p>
+      <p>Prefabricamos los módulos bajo techo, controlando cada corte y cada unión antes de que la madera llegue a tu sitio. Eso significa menos tiempo de obra expuesto al clima, menos imprevistos y un resultado con la misma calidad en el primer módulo que en el último.</p>
+      <p>Trabajamos con especies de madera tratada para las condiciones de Chile, y acompañamos cada etapa: diseño, prefabricación, montaje y terminaciones.</p>
+    </div>
+    <div class="capabilities">
+      <div class="cap-row"><span class="cap-name">Diseño y planos</span><span class="cap-detail">Modular, a medida del terreno</span></div>
+      <div class="cap-row"><span class="cap-name">Prefabricación en taller</span><span class="cap-detail">Control de calidad por módulo</span></div>
+      <div class="cap-row"><span class="cap-name">Montaje en obra</span><span class="cap-detail">Equipo propio, plazos fijos</span></div>
+      <div class="cap-row"><span class="cap-name">Terminaciones</span><span class="cap-detail">Machimbrado, decks, pintura y sellos</span></div>
+      <div class="cap-row"><span class="cap-name">Garantía</span><span class="cap-detail">Estructura y mano de obra</span></div>
+    </div>
+  </div>
+</section>
 
-    <section id="contacto">
-        <h2>Hablemos de tu Proyecto</h2>
-        <p>Estamos listos para cotizar y empezar a construir. Contáctanos:</p>
-        <p><strong>Email:</strong> proyectos@tuempresamodular.com</p>
-        <p><strong>Teléfono:</strong> +56 9 XXXX XXXX</p>
-    </section>
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Especialidades</div>
+      <h2 class="section-title">Tres formas de construir en madera</h2>
+      <p class="section-lead">Desde una casa completa hasta el detalle de un revestimiento o una terraza. Cada especialidad se ejecuta con el mismo estándar de taller.</p>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 Construcciones Modulares. Todos los derechos reservados.</p>
-    </footer>
+    <div class="service-row">
+      <div class="service-copy">
+        <h3>Casas modulares</h3>
+        <p>Módulos prefabricados que se combinan según el terreno y el programa que necesites: desde una cabaña de un ambiente hasta una vivienda de varios dormitorios. Estructura, aislación y envolvente resueltas antes del montaje.</p>
+        <div class="tags"><span>Diseño a medida</span><span>Montaje en días, no meses</span><span>Aislación térmica</span></div>
+      </div>
+      <div class="service-art">
+        <svg viewBox="0 0 300 200" width="100%">
+          <rect x="40" y="70" width="90" height="90" fill="none" stroke="#EDE6D6" stroke-width="1.5"/>
+          <rect x="130" y="70" width="90" height="90" fill="none" stroke="#D07C33" stroke-width="1.5"/>
+          <rect x="40" y="20" width="90" height="45" fill="none" stroke="#EDE6D6" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="85" y1="70" x2="85" y2="160" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="175" y1="70" x2="175" y2="160" stroke="#4A3B2A" stroke-width="1"/>
+          <rect x="55" y="100" width="20" height="35" fill="none" stroke="#EDE6D6" stroke-width="1.2"/>
+          <rect x="150" y="100" width="25" height="60" fill="#B5651D" opacity="0.5" stroke="#EDE6D6" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="service-row reverse">
+      <div class="service-copy">
+        <h3>Machimbrado</h3>
+        <p>Instalación de revestimientos machimbrados en cielos, muros y exteriores. Además del terminado visual, funciona como una capa de aislación térmica adicional para tu espacio.</p>
+        <div class="tags"><span>Interior y exterior</span><span>Terminado rústico o moderno</span><span>Aislación térmica</span></div>
+      </div>
+      <div class="service-art">
+        <svg viewBox="0 0 300 200" width="100%">
+          <rect x="40" y="40" width="220" height="120" fill="none" stroke="#EDE6D6" stroke-width="1.5"/>
+          <line x1="40" y1="60" x2="260" y2="60" stroke="#D07C33" stroke-width="1"/>
+          <line x1="40" y1="80" x2="260" y2="80" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="40" y1="100" x2="260" y2="100" stroke="#D07C33" stroke-width="1"/>
+          <line x1="40" y1="120" x2="260" y2="120" stroke="#4A3B2A" stroke-width="1"/>
+          <line x1="40" y1="140" x2="260" y2="140" stroke="#D07C33" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-copy">
+        <h3>Decks y exteriores</h3>
+        <p>Diseño y construcción de decks en madera tratada y materiales compuestos, para terrazas, piscinas y áreas de descanso. Resueltos para resistir humedad y uso exterior.</p>
+        <div class="tags"><span>Madera tratada</span><span>Materiales compuestos</span><span>Piscinas y terrazas</span></div>
+      </div>
+      <div class="service-art">
+        <svg viewBox="0 0 300 200" width="100%">
+          <g>
+            <rect x="30" y="90" width="16" height="80" fill="#3A2B20"/>
+            <rect x="54" y="90" width="16" height="80" fill="#4A3B2A"/>
+            <rect x="78" y="90" width="16" height="80" fill="#3A2B20"/>
+            <rect x="102" y="90" width="16" height="80" fill="#4A3B2A"/>
+            <rect x="126" y="90" width="16" height="80" fill="#3A2B20"/>
+            <rect x="150" y="90" width="16" height="80" fill="#4A3B2A"/>
+            <rect x="174" y="90" width="16" height="80" fill="#3A2B20"/>
+            <rect x="198" y="90" width="16" height="80" fill="#4A3B2A"/>
+            <rect x="222" y="90" width="16" height="80" fill="#3A2B20"/>
+            <rect x="246" y="90" width="16" height="80" fill="#4A3B2A"/>
+          </g>
+          <rect x="25" y="80" width="245" height="10" fill="#D07C33"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Cómo trabajamos</div>
+      <h2 class="section-title">De la primera visita al último detalle</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h4>Visita y medición</h4>
+        <p>Revisamos el terreno, tus necesidades y definimos el programa del proyecto.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h4>Diseño y cotización</h4>
+        <p>Te entregamos planos, especificaciones de materiales y un precio cerrado.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h4>Prefabricación</h4>
+        <p>Fabricamos los módulos en taller, bajo condiciones controladas.</p>
+      </div>
+      <div class="step">
+        <span class="num">04</span>
+        <h4>Montaje y entrega</h4>
+        <p>Instalamos en terreno y hacemos la entrega final con garantía.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Hablemos de tu proyecto</h2>
+      <p class="lead">Cuéntanos qué necesitas construir. Te respondemos con una propuesta y un plazo de obra concreto.</p>
+    </div>
+    <div class="contact-card">
+      <div class="row">
+        <div class="label">Correo</div>
+        <div class="value">proyectos@roblesur.cl</div>
+      </div>
+      <div class="row">
+        <div class="label">Teléfono</div>
+        <div class="value">+56 9 XXXX XXXX</div>
+      </div>
+      <div class="row">
+        <div class="label">Zona de trabajo</div>
+        <div class="value">Todo Chile, proyectos a medida</div>
+      </div>
+      <a class="btn-primary" href="mailto:proyectos@roblesur.cl">Escribir ahora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
+        <path d="M17 3 L31 13 V31 H3 V13 Z" stroke="#EDE6D6" stroke-width="1.6" fill="none"/>
+        <path d="M17 3 L31 13 H3 Z" fill="#B5651D"/>
+      </svg>
+      <span class="name">Roble Sur</span>
+    </div>
+    <p>&copy; 2026 Roble Sur — Construcción Modular. Todos los derechos reservados.</p>
+  </div>
+</footer>
 
 </body>
 </html>
